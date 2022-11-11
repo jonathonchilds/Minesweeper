@@ -23,6 +23,7 @@ body {
   height: fit-content;
   min-height: 100%;
   background-color: #81b29a;
+  padding-bottom: 7rem;
 }
 
 li {
@@ -53,5 +54,12 @@ ul {
 h1 {
   text-align: center;
   font-size: 2.5rem;
-  margin: 4;
+  padding-bottom: none;
+  margin: 1rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

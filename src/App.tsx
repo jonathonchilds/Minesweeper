@@ -26,8 +26,11 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div>
       <h1>Minesweeper</h1>
+      <div className="button">
+        <button>Start a game!</button>
+      </div>
       <ul>
         {game.board.map(function (row, rowIndex) {
           return row.map(function (column, columnIndex) {
