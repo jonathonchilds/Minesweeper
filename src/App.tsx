@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <h1>Minesweeper</h1>
-      <ul>
+      <ul className="board">
         {game.board.map(function (row, rowIndex) {
           return row.map(function (column, columnIndex) {
             return <li key={column}>{column}</li>
