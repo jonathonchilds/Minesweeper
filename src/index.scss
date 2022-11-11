@@ -53,13 +53,30 @@ ul {
 
 h1 {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 3rem;
   padding-bottom: none;
   margin: 1rem;
+  //text-shadow: 1px 1px #696462;
 }
 
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.14), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+button {
+  // :hover {
+  //   background-color: #242424;
+  // }
+  background: transparent;
+  border: 2px solid #242424;
+  border-radius: 9px;
+  padding: 10px 50px;
+  font-weight: bolder;
 }
