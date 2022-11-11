@@ -64,6 +64,7 @@ function App() {
         setGame(newGame)
       }
     } else if (e.type === 'contextmenu') {
+      e.preventDefault()
       const url = `https://minesweeper-api.herokuapp.com/games/${game.id}/flag`
       const body = { row, col }
       const response = await fetch(url, {
@@ -78,15 +79,18 @@ function App() {
     }
   }
 
-  // async function handleFlagCell(row: number, col: number) {
-  //   console.log('clicked!')
-  // }
+  let dynamicButton
+  if (game.state == 'won') {
+    dynamicButton = 'Nice one! Press to play again.'
+  } else if (game.state == 'lost') {
+    dynamicButton = 'Oof! Press to play again.'
+  } else dynamicButton = 'Press to play!'
 
   return (
     <div>
       <h1>Minesweeper</h1>
       <div className="button">
-        <button onClick={() => handleNewGame(0)}>Start a game!</button>
+        <button onClick={() => handleNewGame(0)}>{dynamicButton}</button>
       </div>
       <ul>
         {game.board.map((row, rowIndex) =>
