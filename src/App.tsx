@@ -71,10 +71,10 @@ function App() {
         {game.board.map((row, rowIndex) =>
           row.map((column, columnIndex) => (
             <li
+              key={columnIndex}
               onClick={() => {
                 handleClickCell(rowIndex, columnIndex)
               }}
-              key={column}
             >
               {column}
             </li>
