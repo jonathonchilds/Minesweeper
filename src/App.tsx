@@ -46,20 +46,41 @@ function App() {
     }
   }
 
-  async function handleClickCell(row: number, col: number) {
-    const url = `https://minesweeper-api.herokuapp.com/games/${game.id}/check`
-    const body = { row, col }
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(body),
-    })
-
-    if (response.ok) {
-      const newGame = (await response.json()) as Game
-      setGame(newGame)
+  async function handleClickCell(
+    row: number,
+    col: number,
+    e: React.SyntheticEvent<HTMLLIElement>
+  ) {
+    if (e.type === 'click') {
+      const url = `https://minesweeper-api.herokuapp.com/games/${game.id}/check`
+      const body = { row, col }
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+      if (response.ok) {
+        const newGame = (await response.json()) as Game
+        setGame(newGame)
+      }
+    } else if (e.type === 'contextmenu') {
+      const url = `https://minesweeper-api.herokuapp.com/games/${game.id}/flag`
+      const body = { row, col }
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+      if (response.ok) {
+        const newGame = (await response.json()) as Game
+        setGame(newGame)
+      }
     }
   }
+
+  // async function handleFlagCell(row: number, col: number) {
+  //   console.log('clicked!')
+  // }
 
   return (
     <div>
@@ -72,8 +93,11 @@ function App() {
           row.map((column, columnIndex) => (
             <li
               key={columnIndex}
-              onClick={() => {
-                handleClickCell(rowIndex, columnIndex)
+              onClick={(e) => {
+                handleClickCell(rowIndex, columnIndex, e)
+              }}
+              onContextMenu={(e) => {
+                handleClickCell(rowIndex, columnIndex, e)
               }}
             >
               {column}
