@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 function App() {
   const [game, setGame] = useState<Game>({
     board: [
-      [' ', 'X', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -16,9 +16,9 @@ function App() {
     winner: null,
   })
 
-  type Square = 'X' | 'O' | ' '
-  type Row = [Square, Square, Square, Square, Square, Square, Square, Square]
-  type Board = [Row, Row, Row, Row, Row, Row, Row, Row]
+  type Cell = ' ' | '_' | 'F' | '*' | '@' | '1'
+  type Row = Array<Cell>
+  type Board = Array<Row>
   type Game = {
     board: Board
     id: null | number
