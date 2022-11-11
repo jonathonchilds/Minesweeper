@@ -36,10 +36,10 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
-  li.clicked {
-    color: #80ced2;
-  }
+.taken {
+  background-color: #80ced2 !important;
 }
 
 ul {

@@ -83,6 +83,7 @@ function App() {
   if (game.state == 'won') {
     dynamicButton = 'Nice one! Press to play again.'
   } else if (game.state == 'lost') {
+    //lostGame = {lost}
     dynamicButton = 'Oof! Press to play again.'
   } else if (game.state == null) {
     dynamicButton = 'Press to play!'
@@ -98,9 +99,10 @@ function App() {
       </div>
       <ul>
         {game.board.map((row, rowIndex) =>
-          row.map((column, columnIndex) => (
+          row.map((cell, columnIndex) => (
             <li
               key={columnIndex}
+              className={cell === ' ' ? undefined : 'taken'}
               onClick={(e) => {
                 handleClickCell(rowIndex, columnIndex, e)
               }}
@@ -108,7 +110,7 @@ function App() {
                 handleClickCell(rowIndex, columnIndex, e)
               }}
             >
-              {column}
+              {cell}
             </li>
           ))
         )}
