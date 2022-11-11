@@ -84,7 +84,11 @@ function App() {
     dynamicButton = 'Nice one! Press to play again.'
   } else if (game.state == 'lost') {
     dynamicButton = 'Oof! Press to play again.'
-  } else dynamicButton = 'Press to play!'
+  } else if (game.state == null) {
+    dynamicButton = 'Press to play!'
+  } else if (game.state == 'playing' || 'new') {
+    dynamicButton = "You've got this!"
+  }
 
   return (
     <div>

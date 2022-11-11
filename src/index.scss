@@ -33,6 +33,13 @@ li {
   border: solid black 1px;
   height: 38px;
   width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  li.clicked {
+    color: #80ced2;
+  }
 }
 
 ul {
