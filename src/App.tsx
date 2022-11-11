@@ -25,11 +25,26 @@ function App() {
     winner: null | string
   }
 
+  async function handleNewGame() {
+    const response = await fetch(
+      'https://minesweeper-api.herokuapp.com/games',
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+      }
+    )
+    if (response.ok) {
+      const newGame = await response.json()
+
+      setGame(newGame)
+    }
+  }
+
   return (
     <div>
       <h1>Minesweeper</h1>
       <div className="button">
-        <button>Start a game!</button>
+        <button onClick={handleNewGame}>Start a game!</button>
       </div>
       <ul>
         {game.board.map(function (row, rowIndex) {
