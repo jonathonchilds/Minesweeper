@@ -51,6 +51,9 @@ function App() {
     col: number,
     e: React.SyntheticEvent<HTMLLIElement>
   ) {
+    if (game.state == 'won' || game.state == 'lost') {
+      return
+    }
     if (e.type === 'click') {
       const url = `https://minesweeper-api.herokuapp.com/games/${game.id}/check`
       const body = { row, col }
