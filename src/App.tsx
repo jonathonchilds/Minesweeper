@@ -81,13 +81,13 @@ function App() {
 
   function transformCellValue(value: string) {
     if (value === 'F') {
-      return value
+      return <i className="fa-brands fa-font-awesome"></i>
     }
     if (value === '_') {
       return ' '
     }
     if (value === '*') {
-      return value
+      return <i className="fa-solid fa-bomb"></i>
     }
     return value
   }
@@ -113,11 +113,11 @@ function App() {
   } else if (game.state == null) {
     dynamicButton = 'Press here to play!'
   } else if (game.state == 'playing' || 'new') {
-    dynamicButton = "You've got this! (Click here to reset)"
+    dynamicButton = 'Click here to reset.'
   }
 
   return (
-    <div>
+    <div className="flex game-container">
       <h1>Minesweeper</h1>
       <div className="button">
         <button onClick={() => handleNewGame(0)}>{dynamicButton}</button>

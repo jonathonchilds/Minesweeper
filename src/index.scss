@@ -1,5 +1,6 @@
 :root {
   font: 16px / 1 sans-serif;
+  font-family: 'Montserrat', sans-serif;
 
   // SDG brand colors
   --asphalt: #2f3737;
@@ -22,8 +23,27 @@ body {
   align-items: center;
   height: fit-content;
   min-height: 100%;
-  background-color: #81b29a;
-  padding-bottom: 7rem;
+  background-color: #242424;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  padding-bottom: 2rem;
+  margin: 1rem;
+  font-weight: 200;
+}
+
+ul {
+  border: 5px solid #242424;
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0.1;
+  height: 20rem;
+  width: 20rem;
+  background: transparent;
+  padding-left: 0;
 }
 
 li {
@@ -38,60 +58,6 @@ li {
   justify-content: center;
 }
 
-.flag {
-  background: #adc178;
-}
-
-.text-1 {
-  background: #80ced2 !important;
-}
-
-.taken {
-  background-color: #80ced2;
-}
-.bomb {
-  background-color: #d5562b;
-}
-
-.not-yet-clicked {
-  background-color: #b1a7a6;
-}
-
-ul {
-  border: 5px solid #242424;
-  display: grid;
-  grid-template: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 0.1;
-  height: 20rem;
-  width: 20rem;
-  background-color: #f2cc8fcd;
-  size: rem;
-  padding-left: 0;
-}
-
-.font {
-  --font: 16px / 1 sans-serif;
-}
-
-h1 {
-  text-align: center;
-  font-size: 3rem;
-  padding-bottom: none;
-  margin: 1rem;
-  //text-shadow: 1px 1px #696462;
-}
-
-.button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-button:hover {
-  cursor: pointer;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.14), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
-}
-
 button {
   // :hover {
   //   background-color: #242424;
@@ -99,6 +65,46 @@ button {
   background: transparent;
   border: 2px solid #242424;
   border-radius: 9px;
-  padding: 10px 50px;
-  font-weight: bolder;
+  padding: 10px 30px;
+
+  background-color: #81b29a71;
+  margin-bottom: 1.5rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.14), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.game-container {
+  border: solid black 10px;
+  padding: 3rem;
+  background-color: #e9edc9;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.flag {
+  background: #adc178;
+}
+.taken {
+  background-color: #81b29a71;
+}
+.bomb {
+  background-color: #ff006e;
+}
+.not-yet-clicked {
+  background: #cdb4db;
 }
