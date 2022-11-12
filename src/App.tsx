@@ -79,16 +79,41 @@ function App() {
     }
   }
 
+  function transformCellValue(value: string) {
+    if (value === 'F') {
+      return value
+    }
+    if (value === '_') {
+      return ' '
+    }
+    if (value === '*') {
+      return value
+    }
+    return value
+  }
+
+  function transformClassName(value: string) {
+    if (value === 'F') {
+      return 'flag'
+    }
+    if (value === '*') {
+      return 'bomb'
+    }
+    if (value === ' ') {
+      return 'not-yet-clicked'
+    } else return 'taken'
+  }
+
   let dynamicButton
   if (game.state == 'won') {
-    dynamicButton = 'Nice one! Press to play again.'
+    dynamicButton = 'Nice one! Press here to play again.'
   } else if (game.state == 'lost') {
     //lostGame = {lost}
-    dynamicButton = 'Oof! Press to play again.'
+    dynamicButton = 'Oof! Press here to play again.'
   } else if (game.state == null) {
-    dynamicButton = 'Press to play!'
+    dynamicButton = 'Press here to play!'
   } else if (game.state == 'playing' || 'new') {
-    dynamicButton = "You've got this!"
+    dynamicButton = "You've got this! (Click here to reset)"
   }
 
   return (
@@ -101,8 +126,8 @@ function App() {
         {game.board.map((row, rowIndex) =>
           row.map((cell, columnIndex) => (
             <li
+              className={transformClassName(cell)}
               key={columnIndex}
-              className={cell === ' ' ? undefined : 'taken'}
               onClick={(e) => {
                 handleClickCell(rowIndex, columnIndex, e)
               }}
@@ -110,7 +135,7 @@ function App() {
                 handleClickCell(rowIndex, columnIndex, e)
               }}
             >
-              {cell}
+              {transformCellValue(cell)}
             </li>
           ))
         )}
