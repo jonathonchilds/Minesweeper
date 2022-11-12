@@ -33,15 +33,16 @@ h1 {
   padding-bottom: 2rem;
   margin: 1rem;
   font-weight: 200;
+  text-decoration: underline;
 }
 
 ul {
   border: 5px solid #242424;
   display: grid;
-  grid-template: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr/ 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 0.1;
-  height: 20rem;
-  width: 20rem;
+  height: fit-content;
+  width: fit-content;
   background: transparent;
   padding-left: 0;
 }
@@ -84,11 +85,32 @@ button:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.14), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
 }
 
+.rainbow-gradient {
+  background: -moz-linear-gradient(
+    right,
+    orange,
+    yellow,
+    green,
+    cyan,
+    blue,
+    violet
+  );
+  color: whitesmoke;
+}
+
+.flagged-bomb {
+  background-color: #b1d133;
+  font-size: smaller;
+}
+
 .game-container {
   border: solid black 10px;
   padding: 3rem;
   background-color: #e9edc9;
+  width: fit-content;
+  height: fit-content;
 }
+
 .flex {
   display: flex;
   align-items: center;
@@ -97,13 +119,13 @@ button:hover {
 }
 
 .flag {
-  background: #adc178;
+  background: #e80707;
 }
 .taken {
   background-color: #81b29a71;
 }
 .bomb {
-  background-color: #ff006e;
+  background-color: whitesmoke;
 }
 .not-yet-clicked {
   background: #cdb4db;

@@ -89,6 +89,9 @@ function App() {
     if (value === '*') {
       return <i className="fa-solid fa-bomb"></i>
     }
+    if (value === '@') {
+      return <i className="text-fit">Nice</i>
+    }
     return value
   }
 
@@ -101,6 +104,9 @@ function App() {
     }
     if (value === ' ') {
       return 'not-yet-clicked'
+    }
+    if (value === '@') {
+      return 'flagged-bomb'
     } else return 'taken'
   }
 
