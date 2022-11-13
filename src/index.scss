@@ -51,7 +51,7 @@ li {
   margin: 0;
   padding: 0;
   list-style: none;
-  border: solid black 1px;
+  border: solid #242424 1.5px;
   height: 38px;
   width: 38px;
   display: flex;
@@ -128,5 +128,5 @@ button:hover {
   background-color: whitesmoke;
 }
 .not-yet-clicked {
-  background: #cdb4dbc5;
+  background: #ffb803bb;
 }
