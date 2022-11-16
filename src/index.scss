@@ -29,10 +29,17 @@ body {
 h1 {
   text-align: center;
   font-size: 3rem;
-  padding-bottom: 2rem;
   margin: 1rem;
   font-weight: 200;
   text-decoration: underline;
+}
+
+h2 {
+  padding: 1rem;
+  font-weight: 400;
+  margin: 16px 0px;
+  
+
 }
 
 ul {
@@ -43,6 +50,10 @@ ul {
   width: fit-content;
   background: transparent;
   padding-left: 0;
+}
+
+ul.difficulty-0{
+  display: none
 }
 
 ul.difficulty-8{
@@ -56,6 +67,8 @@ ul.difficulty-16{
 ul.difficulty-24{
   grid-template: repeat(24, 1fr) / repeat(24, 1fr)
 }
+
+
 
 
 li {
@@ -80,7 +93,7 @@ button {
   padding: 10px 30px;
 
   background-color: #81b29a71;
-  margin-bottom: 1.5rem;
+  margin: 3px;
 }
 
 .button {

@@ -51,7 +51,6 @@ function App() {
     col: number,
     action: 'check' | 'flag',
     event: React.MouseEvent
-    //SyntheticEvent<HTMLLIElement>
   ) {
     if (game.state == 'won' || game.state == 'lost') {
     }
@@ -66,6 +65,18 @@ function App() {
     if (response.ok) {
       const newGame = (await response.json()) as Game
       setGame(newGame)
+    }
+  }
+
+  function dynamicH2() {
+    if (game.state == 'won') {
+      return 'Nice one! Press below to play again.'
+    } else if (game.state == 'lost') {
+      return 'Oof! Press below to play again.'
+    } else if (game.state == null) {
+      return 'Choose a difficulty!'
+    } else if (game.state == 'playing' || 'new') {
+      return 'Good luck! Click below to reset.'
     }
   }
 
@@ -100,21 +111,10 @@ function App() {
     } else return 'taken'
   }
 
-  let dynamicH2
-  if (game.state == 'won') {
-    dynamicH2 = 'Nice one! Press below to play again.'
-  } else if (game.state == 'lost') {
-    dynamicH2 = 'Oof! Press below to play again.'
-  } else if (game.state == null) {
-    dynamicH2 = 'Choose a difficulty!'
-  } else if (game.state == 'playing' || 'new') {
-    dynamicH2 = 'Good luck! Click below to reset.'
-  }
-
   return (
     <div className="flex game-container">
       <h1>Minesweeper</h1>
-      <h2>{dynamicH2}</h2>
+      <h2>{dynamicH2()}</h2>
       <div className="other-button">
         <button onClick={() => handleNewGame(0)}>Easy (8x8)</button>
         <button onClick={() => handleNewGame(1)}>Intermediate (16x16)</button>
