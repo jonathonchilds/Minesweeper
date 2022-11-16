@@ -2,15 +2,13 @@
   font: 16px / 1 sans-serif;
   font-family: 'Montserrat', sans-serif;
 
-  // SDG brand colors
-  --asphalt: #2f3737;
-  --bright-sky: #80ced2;
-  --lime: #b1d133;
-  --night-sky: #85577e;
-  --sand: #f7f0da;
-  --sea: #5a9090;
-  --sun: #d5562b;
-  --tangerine: #f99d1b;
+  --easy-cell-size: 3rexpert--easy-board-size: 8;
+
+  --intermediate-cell-size: 2rem;
+  --intermediate-board-size: 16;
+
+  --expert-cell-size: 1.5rem;
+  --expert-board-size: 24;
 }
 
 html {
@@ -25,6 +23,7 @@ body {
   min-height: 100%;
   background-color: #242424;
   margin: 0;
+  //flex-direction: column;
 }
 
 h1 {
@@ -39,7 +38,6 @@ h1 {
 ul {
   border: 5px solid #242424;
   display: grid;
-  grid-template: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr/ 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 0.1;
   height: fit-content;
   width: fit-content;
@@ -47,11 +45,24 @@ ul {
   padding-left: 0;
 }
 
+ul.difficulty-8{
+  grid-template: repeat(8, 1fr) / repeat(8, 1fr)
+}
+
+ul.difficulty-16{
+  grid-template: repeat(16, 1fr) / repeat(16, 1fr)
+}
+
+ul.difficulty-24{
+  grid-template: repeat(24, 1fr) / repeat(24, 1fr)
+}
+
+
 li {
   margin: 0;
   padding: 0;
   list-style: none;
-  border: solid #242424 1.5px;
+  border: solid #f3e386 1.5px;
   height: 38px;
   width: 38px;
   display: flex;
@@ -106,7 +117,7 @@ button:hover {
 .game-container {
   border: solid black 10px;
   padding: 3rem;
-  background-color: #e9edc9;
+  background-color: #faedcd;
   width: fit-content;
   height: fit-content;
 }
@@ -128,5 +139,5 @@ button:hover {
   background-color: whitesmoke;
 }
 .not-yet-clicked {
-  background: #ffb803bb;
+  background: #335c67;
 }
