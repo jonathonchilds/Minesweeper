@@ -24,6 +24,7 @@ function App() {
     | '8'
   type Row = Array<Cell>
   type Board = Array<Row>
+
   type Game = {
     board: Board
     id: number | undefined
@@ -81,34 +82,33 @@ function App() {
   }
 
   function transformCellValue(value: string) {
-    if (value === 'F') {
-      return <i className="fa-brands fa-font-awesome"></i>
+    switch (value) {
+      case 'F':
+        return <i className="fa-brands fa-font-awesome"></i>
+      case '*':
+        return <i className="fa-solid fa-bomb"></i>
+      case '_':
+        return ' '
+      case '@':
+        return <i className="text-fit">Nice</i>
+      default:
+        return value
     }
-    if (value === '_') {
-      return ' '
-    }
-    if (value === '*') {
-      return <i className="fa-solid fa-bomb"></i>
-    }
-    if (value === '@') {
-      return <i className="text-fit">Nice</i>
-    }
-    return value
   }
 
-  function transformClassName(value: string) {
-    if (value === 'F') {
-      return 'flag'
+  function transformClassName(cell: string) {
+    switch (cell) {
+      case 'F':
+        return 'flag'
+      case '*':
+        return 'bomb'
+      case ' ':
+        return 'not-yet-clicked'
+      case '@':
+        return 'flagged-bomb'
+      default:
+        return 'taken'
     }
-    if (value === '*') {
-      return 'bomb'
-    }
-    if (value === ' ') {
-      return 'not-yet-clicked'
-    }
-    if (value === '@') {
-      return 'flagged-bomb'
-    } else return 'taken'
   }
 
   return (
