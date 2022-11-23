@@ -82,18 +82,17 @@ function App() {
   }
 
   function transformCellValue(value: string) {
-    switch (value) {
-      case 'F':
-        return <i className="fa-brands fa-font-awesome"></i>
-      case '*':
-        return <i className="fa-solid fa-bomb"></i>
-      case '_':
-        return ' '
-      case '@':
-        return <i className="text-fit">Nice</i>
-      default:
-        return value
-    }
+    return value === 'F' ? (
+      <i className="fa-brands fa-font-awesome"></i>
+    ) : value == '*' ? (
+      <i className="fa-solid fa-bomb"></i>
+    ) : value == '_' ? (
+      ' '
+    ) : value == '@' ? (
+      <i className="text-fit">Nice</i>
+    ) : (
+      value
+    )
   }
 
   function transformClassName(cell: string) {
