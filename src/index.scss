@@ -76,7 +76,9 @@ li {
   justify-content: center;
   &.disabled {
     pointer-events:none; 
-    opacity:0.6;  }       
+    opacity:0.7;
+    text-emphasis-color: black;
+    background-color: #335c67;  }       
 }
 
 
@@ -96,7 +98,7 @@ button {
   margin: 3px;
 }
 
-.button {
+.difficulty-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,18 +111,6 @@ button:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.14), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
 }
 
-.rainbow-gradient {
-  background: -moz-linear-gradient(
-    right,
-    orange,
-    yellow,
-    green,
-    cyan,
-    blue,
-    violet
-  );
-  color: whitesmoke;
-}
 
 .flagged-bomb {
   background-color: #b1d133;

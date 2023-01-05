@@ -1,0 +1,3 @@
+greying-out works, but I need the font to shine through. 
+for this, I might need to make each li its own component? 
+or the font itself a different component?

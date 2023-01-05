@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { unstable_renderSubtreeIntoContainer } from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 function App() {
   const [game, setGame] = useState<Game>({
@@ -72,13 +73,14 @@ function App() {
 
   function dynamicH2() {
     if (game.state == 'won') {
-      return 'Nice one! Press below to play again.'
+      return 'Nice one! Choose a difficulty to play again.'
     } else if (game.state == 'lost') {
-      return 'Oof! Press below to play again.'
+      return 'Oof! Choose a difficulty to play again.'
     } else if (game.state == undefined) {
       return 'Choose a difficulty!'
     } else if (game.state == 'playing' || 'new') {
-      return 'Good luck! Click below to reset.'
+      return `Good luck!
+       (Choose a difficulty to reset the game.)`
     }
   }
 
@@ -117,7 +119,7 @@ function App() {
     <div className="flex game-container">
       <h1>Minesweeper</h1>
       <h2>{dynamicH2()}</h2>
-      <div className="other-button">
+      <div className="difficulty-buttons">
         <button onClick={() => handleNewGame(0)}>Easy (8x8)</button>
         <button onClick={() => handleNewGame(1)}>Intermediate (16x16)</button>
         <button onClick={() => handleNewGame(2)}>Expert (24x24)</button>
@@ -135,7 +137,6 @@ function App() {
               onClick={(event) => {
                 handleClickCell(rowIndex, columnIndex, 'check', event)
               }}
-              // disabled={game.state != undefined}
               onContextMenu={(event) => {
                 handleClickCell(rowIndex, columnIndex, 'flag', event)
               }}
