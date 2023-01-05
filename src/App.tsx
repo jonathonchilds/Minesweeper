@@ -122,17 +122,15 @@ function App() {
         <button onClick={() => handleNewGame(1)}>Intermediate (16x16)</button>
         <button onClick={() => handleNewGame(2)}>Expert (24x24)</button>
       </div>
-      <ul
-        className={
-          game.state == ('lost' || 'won')
-            ? 'disabled'
-            : `difficulty-${game.board.length}`
-        }
-      >
+      <ul className={`difficulty-${game.board.length}`}>
         {game.board.map((row, rowIndex) =>
           row.map((cell, columnIndex) => (
             <li
-              className={transformClassName(cell)}
+              className={
+                game.state == ('lost' || 'won')
+                  ? 'disabled'
+                  : transformClassName(cell)
+              }
               key={columnIndex}
               onClick={(event) => {
                 handleClickCell(rowIndex, columnIndex, 'check', event)

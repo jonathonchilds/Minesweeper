@@ -60,10 +60,7 @@ ul {
 &.difficulty-24{
   grid-template: repeat(24, 1fr) / repeat(24, 1fr)
 }
-&.disabled {
-  pointer-events:none; 
-  opacity:0.6;         
-}
+
 }
 
 
@@ -77,6 +74,9 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+  &.disabled {
+    pointer-events:none; 
+    opacity:0.6;  }       
 }
 
 
