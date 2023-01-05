@@ -38,8 +38,6 @@ h2 {
   padding: 1rem;
   font-weight: 400;
   margin: 16px 0px;
-  
-
 }
 
 ul {
@@ -50,25 +48,23 @@ ul {
   width: fit-content;
   background: transparent;
   padding-left: 0;
-}
-
-ul.difficulty-0{
+&.difficulty-0{
   display: none
 }
-
-ul.difficulty-8{
+&.difficulty-8{
   grid-template: repeat(8, 1fr) / repeat(8, 1fr)
 }
-
-ul.difficulty-16{
+&.difficulty-16{
   grid-template: repeat(16, 1fr) / repeat(16, 1fr)
 }
-
-ul.difficulty-24{
+&.difficulty-24{
   grid-template: repeat(24, 1fr) / repeat(24, 1fr)
 }
-
-
+&.disabled {
+  pointer-events:none; 
+  opacity:0.6;         
+}
+}
 
 
 li {
@@ -82,6 +78,10 @@ li {
   align-items: center;
   justify-content: center;
 }
+
+
+
+
 
 button {
   // :hover {
@@ -154,3 +154,5 @@ button:hover {
 .not-yet-clicked {
   background: #335c67;
 }
+
+

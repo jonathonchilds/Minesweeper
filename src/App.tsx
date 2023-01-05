@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { unstable_renderSubtreeIntoContainer } from 'react-dom'
 
 function App() {
   const [game, setGame] = useState<Game>({
@@ -53,7 +54,7 @@ function App() {
     action: 'check' | 'flag',
     event: React.MouseEvent
   ) {
-    if (game.state == 'won' || game.state == 'lost') {
+    if (game.state != undefined) {
     }
     event.preventDefault()
     const url = `https://minesweeper-api.herokuapp.com/games/${game.id}/${action}`
@@ -74,12 +75,14 @@ function App() {
       return 'Nice one! Press below to play again.'
     } else if (game.state == 'lost') {
       return 'Oof! Press below to play again.'
-    } else if (game.state == null) {
+    } else if (game.state == undefined) {
       return 'Choose a difficulty!'
     } else if (game.state == 'playing' || 'new') {
       return 'Good luck! Click below to reset.'
     }
   }
+
+  function dynamicGameState() {}
 
   function transformCellValue(value: string) {
     return value === 'F' ? (
@@ -119,7 +122,13 @@ function App() {
         <button onClick={() => handleNewGame(1)}>Intermediate (16x16)</button>
         <button onClick={() => handleNewGame(2)}>Expert (24x24)</button>
       </div>
-      <ul className={`difficulty-${game.board.length}`}>
+      <ul
+        className={
+          game.state == ('lost' || 'won')
+            ? 'disabled'
+            : `difficulty-${game.board.length}`
+        }
+      >
         {game.board.map((row, rowIndex) =>
           row.map((cell, columnIndex) => (
             <li
@@ -128,6 +137,7 @@ function App() {
               onClick={(event) => {
                 handleClickCell(rowIndex, columnIndex, 'check', event)
               }}
+              // disabled={game.state != undefined}
               onContextMenu={(event) => {
                 handleClickCell(rowIndex, columnIndex, 'flag', event)
               }}
