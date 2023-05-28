@@ -1,18 +1,5 @@
 import React, { useState } from 'react'
 
-// function App() {
-//   function dynamicH2() {
-//     if (game.state == 'won') {
-//       return 'Nice one! Choose a difficulty to play again.'
-//     } else if (game.state == 'lost') {
-//       return 'Oof! Choose a difficulty to play again.'
-//     } else if (game.state == undefined) {
-//       return 'Choose a difficulty!'
-//     } else if (game.state == 'playing' || 'new') {
-//       return `Good luck!
-//        (Choose a difficulty to reset the game.)`
-//     }
-//   }
 export function App() {
   const [game, setGame] = useState<Game>({
     board: [],
@@ -111,12 +98,25 @@ export function App() {
     )
   }
 
+  function dynamicH2() {
+    if (game.state == 'won') {
+      return 'Nice one! Choose a difficulty to play again.'
+    } else if (game.state == 'lost') {
+      return 'Oof! Choose a difficulty to play again.'
+    } else if (game.state == undefined) {
+      return 'Choose a difficulty!'
+    } else if (game.state == 'playing' || 'new') {
+      return `Good luck!
+       (Choose a difficulty to reset the game.)`
+    }
+  }
+
   return (
     <>
       <div className="App">
         <div className="flex game-container">
           <h1>Minesweeper</h1>
-          <h2>{/*dynamicH2()*/}</h2>
+          <h2>{dynamicH2()}</h2>
           <div className="difficulty-buttons">
             <button onClick={() => handleNewGame(0)}>Easy (8x8)</button>
             <button onClick={() => handleNewGame(1)}>

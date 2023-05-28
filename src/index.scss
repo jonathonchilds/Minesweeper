@@ -2,7 +2,8 @@
   font: 16px / 1 sans-serif;
   font-family: 'Montserrat', sans-serif;
 
-  --easy-cell-size: 3rexpert--easy-board-size: 8;
+  --easy-cell-size: 3rem;
+  --easy-board-size: 8;
 
   --intermediate-cell-size: 2rem;
   --intermediate-board-size: 16;
@@ -23,7 +24,6 @@ body {
   min-height: 100%;
   background-color: #242424;
   margin: 0;
-  //flex-direction: column;
 }
 
 h1 {
@@ -48,21 +48,19 @@ ul {
   width: fit-content;
   background: transparent;
   padding-left: 0;
-&.difficulty-0{
-  display: none
+  &.difficulty-0 {
+    display: none;
+  }
+  &.difficulty-8 {
+    grid-template: repeat(8, 1fr) / repeat(8, 1fr);
+  }
+  &.difficulty-16 {
+    grid-template: repeat(16, 1fr) / repeat(16, 1fr);
+  }
+  &.difficulty-24 {
+    grid-template: repeat(24, 1fr) / repeat(24, 1fr);
+  }
 }
-&.difficulty-8{
-  grid-template: repeat(8, 1fr) / repeat(8, 1fr)
-}
-&.difficulty-16{
-  grid-template: repeat(16, 1fr) / repeat(16, 1fr)
-}
-&.difficulty-24{
-  grid-template: repeat(24, 1fr) / repeat(24, 1fr)
-}
-
-}
-
 
 li {
   margin: 0;
@@ -75,25 +73,17 @@ li {
   align-items: center;
   justify-content: center;
   &.disabled {
-    pointer-events:none; 
-    opacity:0.7;
+    pointer-events: none;
+    opacity: 0.7;
     text-emphasis-color: black;
-    background-color: #335c67;  }       
+    background-color: #335c67;
+  }
 }
 
-
-
-
-
 button {
-  // :hover {
-  //   background-color: #242424;
-  // }
-  background: transparent;
   border: 2px solid #242424;
   border-radius: 9px;
   padding: 10px 30px;
-
   background-color: #81b29a71;
   margin: 3px;
 }
@@ -110,7 +100,6 @@ button:hover {
   cursor: pointer;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.14), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
 }
-
 
 .flagged-bomb {
   background-color: #b1d133;
@@ -144,5 +133,3 @@ button:hover {
 .not-yet-clicked {
   background: #335c67;
 }
-
-
