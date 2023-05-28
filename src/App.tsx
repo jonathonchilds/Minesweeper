@@ -1,7 +1,7 @@
 import React from 'react'
 import { unstable_renderSubtreeIntoContainer } from 'react-dom'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { GameBoard } from './GameBoard'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import GameBoard from './GameBoard'
 
 // function App() {
 //   function dynamicH2() {
@@ -17,24 +17,27 @@ import { GameBoard } from './GameBoard'
 //     }
 //   }
 export function App() {
-  async function handleNewGame(difficulty: number) {
-    return (
-      <>
+  // async function handleNewGame(difficulty: number) {
+  //   await fetch(`http://localhost:3000/new-game/${difficulty}`, {
+  //     method: 'POST',
+  //   })
+  // }
+  return (
+    <Router>
+      <div className="App">
         <div className="flex game-container">
           <h1>Minesweeper</h1>
           <h2>{/*dynamicH2()*/}</h2>
           <div className="difficulty-buttons">
-            <button onClick={() => handleNewGame(0)}>Easy (8x8)</button>
-            <button onClick={() => handleNewGame(1)}>
-              Intermediate (16x16)
-            </button>
-            <button onClick={() => handleNewGame(2)}>Expert (24x24)</button>
+            <button>Easy (8x8)</button>
+            <button>Intermediate (16x16)</button>
+            <button>Expert (24x24)</button>
           </div>
-          <GameBoard />
         </div>
-      </>
-    )
-  }
+      </div>
+      <Routes>
+        <Route path="/" element={<GameBoard />} />
+      </Routes>
+    </Router>
+  )
 }
-
-export default App

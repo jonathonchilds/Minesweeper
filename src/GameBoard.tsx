@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export function GameBoard() {
+export default function GameBoard() {
   const [game, setGame] = useState<Game>({
     board: [],
     id: undefined,
@@ -99,7 +99,7 @@ export function GameBoard() {
   }
 
   return (
-    <>
+    <div>
       <ul className={`difficulty-${game.board.length}`}>
         {game.board.map((row, rowIndex) =>
           row.map((cell, columnIndex) => (
@@ -122,6 +122,6 @@ export function GameBoard() {
           ))
         )}
       </ul>
-    </>
+    </div>
   )
 }
