@@ -1,7 +1,4 @@
-import React from 'react'
-import { unstable_renderSubtreeIntoContainer } from 'react-dom'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import GameBoard from './GameBoard'
+import React, { useState } from 'react'
 
 // function App() {
 //   function dynamicH2() {
@@ -17,27 +14,142 @@ import GameBoard from './GameBoard'
 //     }
 //   }
 export function App() {
-  // async function handleNewGame(difficulty: number) {
-  //   await fetch(`http://localhost:3000/new-game/${difficulty}`, {
-  //     method: 'POST',
-  //   })
-  // }
+  const [game, setGame] = useState<Game>({
+    board: [],
+    id: undefined,
+    winner: undefined,
+    state: undefined,
+  })
+
+  type Cell =
+    | ' '
+    | '_'
+    | 'F'
+    | '*'
+    | '@'
+    | '1'
+    | '2'
+    | '3'
+    | '4'
+    | '5'
+    | '6'
+    | '7'
+    | '8'
+  type Row = Array<Cell>
+  type Board = Array<Row>
+
+  type Game = {
+    board: Board
+    id: number | undefined
+    state: string | undefined
+    winner: string | undefined
+  }
+
+  async function handleNewGame(difficulty: number) {
+    const response = await fetch(
+      'https://minesweeper-api.herokuapp.com/games',
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ difficulty }),
+      }
+    )
+    const newGame = (await response.json()) as Game
+    if (response.ok) {
+      setGame(newGame)
+    }
+  }
+
+  async function handleClickCell(
+    row: number,
+    col: number,
+    action: 'check' | 'flag',
+    event: React.MouseEvent
+  ) {
+    if (game.state != undefined) {
+    }
+    event.preventDefault()
+    const url = `https://minesweeper-api.herokuapp.com/games/${game.id}/${action}`
+    const body = { row, col }
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(body),
+    })
+    if (response.ok) {
+      const newGame = (await response.json()) as Game
+      setGame(newGame)
+    }
+  }
+
+  function transformClassName(cell: string) {
+    switch (cell) {
+      case 'F':
+        return 'flag'
+      case '*':
+        return 'bomb'
+      case ' ':
+        return 'not-yet-clicked'
+      case '@':
+        return 'flagged-bomb'
+      default:
+        return 'taken'
+    }
+  }
+
+  function transformCellValue(value: string) {
+    return value === 'F' ? (
+      <i className="fa-brands fa-font-awesome"></i>
+    ) : value == '*' ? (
+      <i className="fa-solid fa-bomb"></i>
+    ) : value == '_' ? (
+      ' '
+    ) : value == '@' ? (
+      <i className="text-fit">Nice</i>
+    ) : (
+      value
+    )
+  }
+
   return (
-    <Router>
+    <>
       <div className="App">
         <div className="flex game-container">
           <h1>Minesweeper</h1>
           <h2>{/*dynamicH2()*/}</h2>
           <div className="difficulty-buttons">
-            <button>Easy (8x8)</button>
-            <button>Intermediate (16x16)</button>
-            <button>Expert (24x24)</button>
+            <button onClick={() => handleNewGame(0)}>Easy (8x8)</button>
+            <button onClick={() => handleNewGame(1)}>
+              Intermediate (16x16)
+            </button>
+            <button onClick={() => handleNewGame(2)}>Expert (24x24)</button>
           </div>
         </div>
       </div>
-      <Routes>
-        <Route path="/" element={<GameBoard />} />
-      </Routes>
-    </Router>
+      <div>
+        <ul className={`difficulty-${game.board.length}`}>
+          {game.board.map((row, rowIndex) =>
+            row.map((cell, columnIndex) => (
+              <li
+                className={
+                  game.state == ('lost' || 'won')
+                    ? 'disabled'
+                    : transformClassName(cell)
+                }
+                key={columnIndex}
+                onClick={(event) => {
+                  handleClickCell(rowIndex, columnIndex, 'check', event)
+                }}
+                onContextMenu={(event) => {
+                  handleClickCell(rowIndex, columnIndex, 'flag', event)
+                }}
+              >
+                {transformCellValue(cell)}
+              </li>
+            ))
+          )}
+        </ul>
+      </div>
+    </>
   )
 }
